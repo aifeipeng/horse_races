@@ -23,8 +23,7 @@ interface Start {
         },
         pedigree: { father: { name: string } }
     },
-    startTime: string,
-    starts: []
+    startTime: string
 }
 
 const AccordionList = (props: { starts: [] }) => {

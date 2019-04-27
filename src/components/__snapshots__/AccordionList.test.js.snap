@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<Accordion
+  allowZeroExpanded={true}
+  className="accordion"
+>
+  <AccordionItem
+    className="accordion__item"
+  >
+    <AccordionItemHeading>
+      <AccordionItemButton>
+        <p>
+          Number: string
+        </p>
+        <p>
+          Horse: string
+        </p>
+        <p>
+          Driver: string string
+        </p>
+      </AccordionItemButton>
+    </AccordionItemHeading>
+    <AccordionItemPanel
+      className="accordion__panel"
+    >
+      <p>
+        Trainer: string string
+      </p>
+      <p>
+        Horses father: string
+      </p>
+    </AccordionItemPanel>
+  </AccordionItem>
+  <AccordionItem
+    className="accordion__item"
+  >
+    <AccordionItemHeading>
+      <AccordionItemButton>
+        <p>
+          Number: string
+        </p>
+        <p>
+          Horse: string
+        </p>
+        <p>
+          Driver: string string
+        </p>
+      </AccordionItemButton>
+    </AccordionItemHeading>
+    <AccordionItemPanel
+      className="accordion__panel"
+    >
+      <p>
+        Trainer: string string
+      </p>
+      <p>
+        Horses father: string
+      </p>
+    </AccordionItemPanel>
+  </AccordionItem>
+</Accordion>
+`;

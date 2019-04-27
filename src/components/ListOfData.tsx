@@ -17,7 +17,6 @@ interface Race {
 const ListOfData = (props: {betType: string, gameData: Data}) => {
     const { betType, gameData } = props
     const {races} = gameData
-    console.log('gameData', gameData)
     return (
         <div className="App">
             {betType!=='' &&
