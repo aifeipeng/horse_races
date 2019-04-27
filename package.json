@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react": "^16.8.14",
     "@babel/core": "7.4.3",
     "@svgr/webpack": "4.1.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
@@ -126,5 +127,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^3.4.5"
   }
 }

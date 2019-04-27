@@ -2,18 +2,18 @@ import React from 'react';
 import './MainView.css';
 import '../api/api';
 import api from '../api/api';
-import ListOfData from '../components/ListOfData';
+// @ts-ignore
+import ListOfData from '../components/ListOfData.tsx';
 
-class MainView extends React.Component {
+class MainView extends React.Component<{}, { gameData: {races: []}, game: { id: string}, typeOfGame: string, betType: string, isFetching: boolean }> {
     constructor(props) {
         super(props)
         this.state = {
             typeOfGame: '',
             isFetching: false,
-            isInvalidGameType: false,
             betType: '',
-            game: {},
-            gameData: {}
+            game: {id: ''},
+            gameData: {races: []}
         }
     }
     componentDidMount() {
@@ -31,7 +31,7 @@ class MainView extends React.Component {
         return false
     }
 
-    handleInputChange = (e) => {
+    handleInputChange = (e: {target: {value: string}}) => {
         const saveValue = e.target.value;
         this.setState({
             typeOfGame: saveValue
@@ -42,7 +42,6 @@ class MainView extends React.Component {
         if (this.isValidGameType()) {
 
             this.setState({
-                gameData: [],
                 isFetching: true
             })
             api.getGameSchedule(this.state.typeOfGame)

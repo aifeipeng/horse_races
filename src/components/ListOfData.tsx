@@ -1,9 +1,22 @@
 import React from 'react';
-import AccordionList from './AccordionList';
+// @ts-ignore
+import AccordionList from './AccordionList.tsx';
+
+interface Data {
+    races: [];
+}
+interface Race {
+    number: string,
+    name: string,
+    startTime: string,
+    starts: []
+}
 
 
-const ListOfData = (props) => {
+
+const ListOfData = (props: {betType: string, gameData: Data}) => {
     const { betType, gameData } = props
+    const {races} = gameData
     console.log('gameData', gameData)
     return (
         <div className="App">
@@ -12,7 +25,7 @@ const ListOfData = (props) => {
                     {`Game type: ${betType}`}
                 </p>
             }
-            {!!gameData.races && gameData.races.map(element => {
+            {!!races && races.map((element: Race) => {
                 return (<React.Fragment>
                     <p>
                         Number: {element.number}

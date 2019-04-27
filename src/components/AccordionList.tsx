@@ -8,13 +8,32 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 
-const AccordionList = (props) => {
+interface Start {
+    number: string,
+    driver: {
+        firstName: string,
+        lastName: string
+    },
+    horse: {
+        name: string,
+
+        trainer: {
+            firstName: string,
+            lastName: string
+        },
+        pedigree: { father: { name: string } }
+    },
+    startTime: string,
+    starts: []
+}
+
+const AccordionList = (props: { starts: [] }) => {
     const { starts } = props
 
     return (
         <Accordion
             allowZeroExpanded={true}>
-            {!!starts && starts.map(start => {
+            {!!starts && starts.map((start: Start) => {
                 return <AccordionItem
                     key={start.number}>
                     <AccordionItemHeading>
