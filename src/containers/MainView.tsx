@@ -5,19 +5,17 @@ import api from '../api/api';
 // @ts-ignore
 import ListOfData from '../components/ListOfData.tsx';
 
-class MainView extends React.Component<{}, { gameData: {races: []}, game: { id: string}, typeOfGame: string, betType: string, isFetching: boolean }> {
+class MainView extends React.Component<{}, { isInvalidInput: boolean, gameData: { races: [] }, game: { id: string }, typeOfGame: string, betType: string, isFetching: boolean }> {
     constructor(props) {
         super(props)
         this.state = {
             typeOfGame: '',
             isFetching: false,
             betType: '',
-            game: {id: ''},
-            gameData: {races: []}
+            game: { id: '' },
+            gameData: { races: [] },
+            isInvalidInput: false
         }
-    }
-    componentDidMount() {
-
     }
 
     isValidGameType = () => {
@@ -26,12 +24,18 @@ class MainView extends React.Component<{}, { gameData: {races: []}, game: { id: 
             inputTextNoCase === 'V65' ||
             inputTextNoCase === 'V64' ||
             inputTextNoCase === 'V4') {
+            this.setState({
+                isInvalidInput: false,
+            })
             return true
         }
+        this.setState({
+            isInvalidInput: true,
+        })
         return false
     }
 
-    handleInputChange = (e: {target: {value: string}}) => {
+    handleInputChange = (e: { target: { value: string } }) => {
         const saveValue = e.target.value;
         this.setState({
             typeOfGame: saveValue
@@ -70,13 +74,21 @@ class MainView extends React.Component<{}, { gameData: {races: []}, game: { id: 
 
     }
 
+    handleKeyDown = (e: { key: string }) => {
+        if (e.key === 'Enter') {
+            this.handleSearchClick()
+        }
+    }
+
     render() {
-        const { isFetching, betType, gameData, game } = this.state
+        const { isFetching, betType, gameData, game, isInvalidInput } = this.state
 
         return (
             <div className="App">
                 <div className="searchArea">
-                    <input placeholder='Enter game type here'
+                    <input
+                        onKeyDown={this.handleKeyDown}
+                        placeholder='Enter game type here'
                         type="text"
                         id="name"
                         name="name"
@@ -87,7 +99,10 @@ class MainView extends React.Component<{}, { gameData: {races: []}, game: { id: 
                 </div>
                 <div>
                     {isFetching ?
-                        <div className="loader"></div> :
+                        <div className="loader"></div> : isInvalidInput ? 
+                        <p >
+                            That is not a valid game type
+                        </p> :
                         <ListOfData
                             gameData={gameData}
                             game={game}
