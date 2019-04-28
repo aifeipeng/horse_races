@@ -24,19 +24,20 @@ const ListOfData = (props: {betType: string, gameData: Data}) => {
                     {`Game type: ${betType}`}
                 </p>
             }
-            {!!races && races.map((element: Race) => {
-                return (<React.Fragment>
+            {!!races && races.map((race: Race) => {
+                return (<React.Fragment
+                key={race.startTime}>
                     <p>
-                        Number: {element.number}
+                        Number: {race.number}
                     </p>
                     <p>
-                        Name: {element.name}
+                        Name: {race.name}
                     </p>
                     <p>
-                        Start time: {element.startTime}
+                        Start time: {race.startTime}
                     </p>
                     <AccordionList
-                        starts={element.starts}
+                        starts={race.starts}
                     />
                 </React.Fragment>)
             })}
